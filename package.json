@@ -1,0 +1,19 @@
+{
+  "name": "image-processing-api",
+  "version": "1.0.0",
+  "description": "Udacity Project",
+  "main": "./build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdulazizAssainar/Image-Processing-API.git"
+  },
+  "author": "AbdulazizAssinar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbdulazizAssainar/Image-Processing-API/issues"
+  },
+  "homepage": "https://github.com/AbdulazizAssainar/Image-Processing-API#readme"
+}
