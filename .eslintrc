@@ -1,0 +1,8 @@
+{
+    "parserOptions": {
+        "parser": "@babel/eslint-parser",
+        "requireConfigFile": false,
+        "ecmaVersion": 2022,
+        "sourceType": "module"
+      }
+}

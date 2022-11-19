@@ -1,6 +1,6 @@
 import express from 'express';
 import React from 'react';
-import ReactDOM from "react-dom";
+import img1 from "../../../assets/full/encenadaport.jpg"
 
 const images = express.Router();
 let name: string;
@@ -15,7 +15,7 @@ images.get('/', (req, res) => {
     height = Number(req.query.height);
 
     if (name != 'undefined' && !isNaN(width) && !isNaN(height)) {
-        res.send(<h1>Image API route</h1>)
+        res.send(<img src={img1}></img>)
     } else {
         res.send('Null found');
     }
