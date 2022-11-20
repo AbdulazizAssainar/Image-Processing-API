@@ -4,11 +4,10 @@
   "description": "Udacity frist project",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node build/main.js",
     "src": "nodemon src/index.ts",
     "lint": "eslint . --ext .ts",
-    "prettier": "prettier --config .prettierrc 'scr/**/*.ts' --write",
+    "test": "prettier --config .prettierrc 'scr/**/*.ts' --write",
     "build": "npx tsc"
   },
   "repository": {
