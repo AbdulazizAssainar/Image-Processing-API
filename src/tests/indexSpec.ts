@@ -1,16 +1,12 @@
-import routes from '../routes';
-var express = require('express');
-var path = require('path');
-var request = require('request');
 var fs = require('fs');
-var app = express();
-var port = 3000;
-var url = 'http://localhost:' + port;
+const Fs = require('@supercharge/fs');
 
-describe('Testing index file', () => {
-  it('Testing main route', () => {
-    routes.get('/', (req, res) => {
-      expect(res.statusCode).toEqual(200);
-    });
+let filesLength: number;
+let fullPath = '../../../images/full';
+
+describe('Test Index', () => {
+  it('check if full/images exists', async () => {
+    const isEmptyDir = await Fs.isEmptyDir(fullPath);
+    expect(isEmptyDir).toBeFalse();
   });
 });
