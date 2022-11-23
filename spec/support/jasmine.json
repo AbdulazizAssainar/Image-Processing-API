@@ -1,0 +1,11 @@
+{
+    "spec_dir": "build/tests",
+    "spec_files": [
+        "**/*[sS]pec.js"
+    ],
+    "healpers": [
+        "healpers/**/*.js"
+    ],
+    "stopSpecOnExpectationFailure": false,
+    "random": false
+}
