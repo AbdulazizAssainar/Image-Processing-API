@@ -1,14 +1,15 @@
+import * as pathModule from './paths';
 const sharp = require('sharp');
 const fs = require('fs');
 
 async function createImg(filename: string, width: number, height: number) {
   try {
-    const img = await sharp('./images/full/' + filename + '.jpg')
+    const img = await sharp(pathModule.imgFullPath + '/' + filename + '.jpg')
       .jpeg()
       .resize(width, height)
       .toBuffer();
     fs.writeFileSync(
-      './images/thumb/' + filename + '_thumb(' + width + 'x' + height + ').jpg',
+      pathModule.imgThumbPath + '/' + filename + '_thumb(' + width + 'x' + height + ').jpg',
       img
     );
     console.log('cache created');
@@ -17,4 +18,4 @@ async function createImg(filename: string, width: number, height: number) {
   }
 }
 
-export default createImg;
+export {createImg};

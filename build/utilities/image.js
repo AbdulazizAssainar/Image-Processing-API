@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var paths_1 = require("./paths");
 var sharp = require('sharp');
 var fs = require('fs');
 function createImg(filename, width, height) {
@@ -45,13 +46,13 @@ function createImg(filename, width, height) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, sharp('./images/full/' + filename + '.jpg')
+                    return [4 /*yield*/, sharp(paths_1.imgFullPath + '/' + filename + '.jpg')
                             .jpeg()
                             .resize(width, height)
                             .toBuffer()];
                 case 1:
                     img = _a.sent();
-                    fs.writeFileSync('./images/thumb/' + filename + '_thumb(' + width + 'x' + height + ').jpg', img);
+                    fs.writeFileSync(paths_1.imgThumbPath + '/' + filename + '_thumb(' + width + 'x' + height + ').jpg', img);
                     console.log('cache created');
                     return [3 /*break*/, 3];
                 case 2:

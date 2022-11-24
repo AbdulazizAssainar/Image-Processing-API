@@ -10,4 +10,4 @@ const logger = (
   next();
 };
 
-export default logger;
+export {logger};

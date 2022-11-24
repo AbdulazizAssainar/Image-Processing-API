@@ -2,44 +2,62 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
-import createImg from '../../utilities/image';
-import logger from '../../utilities/logger';
+import * as datacheckModule from '../../utilities/datacheck';
+import * as imageModule from '../../utilities/image';
+import * as loggerModule from '../../utilities/logger';
+import * as pathModule from '../../utilities/paths';
 const image = express.Router();
 
 let fileName: string;
 let width: number;
 let height: number;
-let cachePath: string;
+let filePath: string;
+let chkPassed: boolean;
+let chkError: string;
 
-image.get('/', logger, (req, res) => {
+image.get('/', loggerModule.logger, (req, res) => {
   //get data from url
   fileName = String(req.query.filename);
   width = Number(req.query.width);
   height = Number(req.query.height);
+  filePath = path.resolve(pathModule.imgFullPath + '/' + fileName + '.jpg');
 
-  if (fileName == 'undefined') {
-    // check fileName
-    res.send('Your filename is ' + fileName);
-  } else if (isNaN(width)) {
-    // check width
-    res.send('Please check the width in your URL');
-  } else if (isNaN(height)) {
-    // check height
-    res.send('Please check the height in your URL');
-  } else {
-    cachePath =
-      './images/thumb/' + fileName + '_thumb(' + width + 'x' + height + ').jpg';
-    if (fs.existsSync(cachePath)) {
-      // find cached image
-      console.log('cached found');
-      res.sendFile(path.resolve(cachePath));
-    } else {
-      // create cache if not found
-      createImg(fileName, width, height).then(() =>
-        res.sendFile(path.resolve(cachePath))
-      );
-    }
+  if (!datacheckModule.checkFileName(fileName)) { // Validate fileName
+    chkError = datacheckModule.checkError;
+    res.send(datacheckModule.checkError);
+    return;
   }
+
+  if (!datacheckModule.checkWidth(width)) { // Validate width
+    chkError = datacheckModule.checkError;
+    res.send(datacheckModule.checkError);
+    return;
+  }
+
+  if (!datacheckModule.checkHeight(height)) { // Validate height
+    chkError = datacheckModule.checkError;
+    res.send(datacheckModule.checkError);
+    return;
+  }
+
+  if (!datacheckModule.checkIfFileExists(filePath)) { // Check if Image in folder named 'full' exists 
+    chkError = datacheckModule.checkError;
+    res.send(datacheckModule.checkError);
+    return;
+  }
+
+  // Switch filePath from folder named 'full' to another folder named 'thumb'
+  filePath = path.resolve(pathModule.imgThumbPath + '/' + fileName + '_thumb(' + width + 'x' + height + ').jpg');
+
+  if (datacheckModule.checkIfCacheFileExists(filePath)) { // Check if Image in folder named 'thumb' exists
+    console.log('cached found');
+    res.sendFile(path.resolve(filePath));
+    return;
+  }
+
+  imageModule.createImg(fileName, width, height).then(() => // Create cache image in folder named 'thumb'
+    res.sendFile(path.resolve(filePath))
+  );
 });
 
-export default image;
+export {image};
