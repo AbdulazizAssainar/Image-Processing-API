@@ -31,7 +31,6 @@ var express_1 = __importDefault(require("express"));
 var path_1 = __importDefault(require("path"));
 var datacheckModule = __importStar(require("../../utilities/datacheck"));
 var imageModule = __importStar(require("../../utilities/image"));
-var loggerModule = __importStar(require("../../utilities/logger"));
 var pathModule = __importStar(require("../../utilities/paths"));
 var image = express_1.default.Router();
 exports.image = image;
@@ -41,40 +40,53 @@ var height;
 var filePath;
 var chkPassed;
 var chkError;
-image.get('/', loggerModule.logger, function (req, res) {
+image.get('/', function (req, res) {
     //get data from url
     fileName = String(req.query.filename);
     width = Number(req.query.width);
     height = Number(req.query.height);
     filePath = path_1.default.resolve(pathModule.imgFullPath + '/' + fileName + '.jpg');
-    if (!datacheckModule.checkFileName(fileName)) { // Validate fileName
+    if (!datacheckModule.checkFileName(fileName)) {
+        // Validate fileName
         chkError = datacheckModule.checkError;
         res.send(datacheckModule.checkError);
         return;
     }
-    if (!datacheckModule.checkWidth(width)) { // Validate width
+    if (!datacheckModule.checkWidth(width)) {
+        // Validate width
         chkError = datacheckModule.checkError;
         res.send(datacheckModule.checkError);
         return;
     }
-    if (!datacheckModule.checkHeight(height)) { // Validate height
+    if (!datacheckModule.checkHeight(height)) {
+        // Validate height
         chkError = datacheckModule.checkError;
         res.send(datacheckModule.checkError);
         return;
     }
-    if (!datacheckModule.checkIfFileExists(filePath)) { // Check if Image in folder named 'full' exists 
+    if (!datacheckModule.checkIfFileExists(filePath)) {
+        // Check if Image in folder named 'full' exists
         chkError = datacheckModule.checkError;
         res.send(datacheckModule.checkError);
         return;
     }
     // Switch filePath from folder named 'full' to another folder named 'thumb'
-    filePath = path_1.default.resolve(pathModule.imgThumbPath + '/' + fileName + '_thumb(' + width + 'x' + height + ').jpg');
-    if (datacheckModule.checkIfCacheFileExists(filePath)) { // Check if Image in folder named 'thumb' exists
+    filePath = path_1.default.resolve(pathModule.imgThumbPath +
+        '/' +
+        fileName +
+        '_thumb(' +
+        width +
+        'x' +
+        height +
+        ').jpg');
+    if (datacheckModule.checkIfCacheFileExists(filePath)) {
+        // Check if Image in folder named 'thumb' exists
         console.log('cached found');
         res.sendFile(path_1.default.resolve(filePath));
         return;
     }
     imageModule.createImg(fileName, width, height).then(function () {
+        // Create cache image in folder named 'thumb'
         return res.sendFile(path_1.default.resolve(filePath));
     });
 });

@@ -16,51 +16,43 @@ function checkFileName(fileName) {
         exports.checkError = checkError = 'Your filename is ' + fileName;
         return false;
     }
-    else if (fileName == '') {
+    if (fileName == '') {
         exports.checkError = checkError = 'Your filename is empty';
         return false;
     }
-    else {
-        return true;
-    }
+    return true;
 }
 exports.checkFileName = checkFileName;
 function checkWidth(width) {
     if (isNaN(width)) {
-        exports.checkError = checkError = 'Please check your URL, Width not found or not written in digits';
+        exports.checkError = checkError =
+            'Please check your URL, Width not found or not written in digits';
         return false;
     }
-    else {
-        return true;
-    }
+    return true;
 }
 exports.checkWidth = checkWidth;
 function checkHeight(height) {
     if (isNaN(height)) {
-        exports.checkError = checkError = 'Please check your URL, Height not found or not written in digits';
+        exports.checkError = checkError =
+            'Please check your URL, Height not found or not written in digits';
         return false;
     }
-    else {
-        return true;
-    }
+    return true;
 }
 exports.checkHeight = checkHeight;
 function checkIfFileExists(path) {
-    if (fs_1.default.existsSync(path)) {
-        return true;
-    }
-    else {
+    if (!fs_1.default.existsSync(path)) {
         exports.checkError = checkError = 'Please check your URL, File not found!';
         return false;
     }
+    return true;
 }
 exports.checkIfFileExists = checkIfFileExists;
 function checkIfCacheFileExists(path) {
     if (fs_1.default.existsSync(path)) {
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 exports.checkIfCacheFileExists = checkIfCacheFileExists;

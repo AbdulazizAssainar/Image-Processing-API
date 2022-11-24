@@ -58,11 +58,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createImg = void 0;
 var pathModule = __importStar(require("./paths"));
-var sharp = require('sharp');
-var fs = require('fs');
+var sharp_1 = __importDefault(require("sharp"));
+var fs_1 = __importDefault(require("fs"));
 function createImg(filename, width, height) {
     return __awaiter(this, void 0, void 0, function () {
         var img, error_1;
@@ -70,15 +73,22 @@ function createImg(filename, width, height) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, sharp(pathModule.imgFullPath + '/' + filename + '.jpg')
+                    return [4 /*yield*/, (0, sharp_1.default)(pathModule.imgFullPath + '/' + filename + '.jpg')
                             .jpeg()
                             .resize(width, height)
                             .toBuffer()];
                 case 1:
                     img = _a.sent();
-                    fs.writeFileSync(pathModule.imgThumbPath + '/' + filename + '_thumb(' + width + 'x' + height + ').jpg', img);
+                    fs_1.default.writeFileSync(pathModule.imgThumbPath +
+                        '/' +
+                        filename +
+                        '_thumb(' +
+                        width +
+                        'x' +
+                        height +
+                        ').jpg', img);
                     console.log('cache created');
-                    return [3 /*break*/, 3];
+                    return [2 /*return*/];
                 case 2:
                     error_1 = _a.sent();
                     console.log(error_1);
