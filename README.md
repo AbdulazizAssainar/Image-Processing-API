@@ -11,13 +11,13 @@ Udacity Project - Image Processing API
 
 I used the training videos that you provided me, and when I was facing a problem, I was searching for solutions via Google and YouTube.
 
-try image route:
-    URL + /api/image?filename=encenadaport&width=200&height=100
-        file names:
+Try image route - ('http:// URL + /api/image?filename=encenadaport&width=200&height=100')
+        "file names:
             - encenadaport
             - fjord
             - icelandwaterfall
             - palmtunnel
-            - santamonica
-    Do not add file extention to file name
-    You can use 'filename' or just 'name' in your url
+            - santamonica"
+
+    Do not add file extention to file name.
+    You can use 'filename' or just 'name' in your url.
