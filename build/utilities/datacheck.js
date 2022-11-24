@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getChacedFiles = exports.checkIfCacheFileExists = exports.checkError = exports.checkIfFileExists = exports.checkHeight = exports.checkWidth = exports.checkFileName = void 0;
+exports.cachedImagesList = exports.getChacedFiles = exports.checkIfCacheFileExists = exports.checkError = exports.checkIfFileExists = exports.checkHeight = exports.checkWidth = exports.checkFileName = void 0;
 var express_1 = __importDefault(require("express"));
 var fs_1 = __importDefault(require("fs"));
 var paths_1 = require("./paths");
@@ -13,6 +13,7 @@ var checkPassed;
 var checkError;
 exports.checkError = checkError;
 var cachedImagesList = [];
+exports.cachedImagesList = cachedImagesList;
 function checkFileName(fileName) {
     if (fileName == 'undefined') {
         exports.checkError = checkError = 'Your filename is ' + fileName;

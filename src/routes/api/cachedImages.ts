@@ -7,7 +7,12 @@ import * as pathModule from '../../utilities/paths';
 const cachedImages = express.Router();
 
 cachedImages.get('/', (req, res) => {
-  res.send('Your cached images list: ' + datacheckModule.cachedImagesList);
+  res.send(
+    'You have (' +
+      datacheckModule.cachedImagesList.length +
+      ') cached images: ' +
+      datacheckModule.cachedImagesList
+  );
 });
 
 datacheckModule.getChacedFiles();

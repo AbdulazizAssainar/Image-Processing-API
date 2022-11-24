@@ -30,7 +30,10 @@ var express_1 = __importDefault(require("express"));
 var datacheckModule = __importStar(require("../../utilities/datacheck"));
 var cachedImages = express_1.default.Router();
 cachedImages.get('/', function (req, res) {
-    res.send('cached Images route');
+    res.send('You have (' +
+        datacheckModule.cachedImagesList.length +
+        ') cached images: ' +
+        datacheckModule.cachedImagesList);
 });
 datacheckModule.getChacedFiles();
 exports.default = cachedImages;
