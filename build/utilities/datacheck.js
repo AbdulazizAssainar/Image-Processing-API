@@ -3,14 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkError = exports.checkIfCacheFileExists = exports.checkIfFileExists = exports.checkHeight = exports.checkWidth = exports.checkFileName = void 0;
+exports.getChacedFiles = exports.checkIfCacheFileExists = exports.checkError = exports.checkIfFileExists = exports.checkHeight = exports.checkWidth = exports.checkFileName = void 0;
 var express_1 = __importDefault(require("express"));
 var fs_1 = __importDefault(require("fs"));
+var paths_1 = require("./paths");
 var image = express_1.default.Router();
 var cachePath;
 var checkPassed;
 var checkError;
 exports.checkError = checkError;
+var cachedImagesList = [];
 function checkFileName(fileName) {
     if (fileName == 'undefined') {
         exports.checkError = checkError = 'Your filename is ' + fileName;
@@ -25,6 +27,8 @@ function checkFileName(fileName) {
 exports.checkFileName = checkFileName;
 function checkWidth(width) {
     if (isNaN(width)) {
+        exports.checkError = checkError =
+            'Please check your URL, Width not found or not written in digits';
         return false;
     }
     return true;
@@ -54,3 +58,21 @@ function checkIfCacheFileExists(path) {
     return false;
 }
 exports.checkIfCacheFileExists = checkIfCacheFileExists;
+function getChacedFiles() {
+    fs_1.default.readdir(paths_1.imgThumbPath, function (err, files) {
+        if (!err) {
+            if (!files.length) {
+                return;
+            }
+            else {
+                fs_1.default.readdir(paths_1.imgThumbPath, function (err, files) {
+                    files.forEach(function (file) {
+                        cachedImagesList.push(file);
+                        console.log(file);
+                    });
+                });
+            }
+        }
+    });
+}
+exports.getChacedFiles = getChacedFiles;

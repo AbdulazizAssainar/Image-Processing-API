@@ -26,14 +26,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.image = void 0;
 var express_1 = __importDefault(require("express"));
 var path_1 = __importDefault(require("path"));
 var datacheckModule = __importStar(require("../../utilities/datacheck"));
 var imageModule = __importStar(require("../../utilities/image"));
 var pathModule = __importStar(require("../../utilities/paths"));
 var image = express_1.default.Router();
-exports.image = image;
 var fileName;
 var width;
 var height;
@@ -42,7 +40,12 @@ var chkPassed;
 var chkError;
 image.get('/', function (req, res) {
     //get data from url
-    fileName = String(req.query.filename);
+    if (req.query.filename != undefined)
+        fileName = String(req.query.filename);
+    if (req.query.name != undefined)
+        fileName = String(req.query.name);
+    if (req.query.filename == undefined && req.query.name == undefined)
+        fileName = "undefined";
     width = Number(req.query.width);
     height = Number(req.query.height);
     filePath = path_1.default.resolve(pathModule.imgFullPath + '/' + fileName + '.jpg');
@@ -71,14 +74,7 @@ image.get('/', function (req, res) {
         return;
     }
     // Switch filePath from folder named 'full' to another folder named 'thumb'
-    filePath = path_1.default.resolve(pathModule.imgThumbPath +
-        '/' +
-        fileName +
-        '_thumb(' +
-        width +
-        'x' +
-        height +
-        ').jpg');
+    filePath = path_1.default.resolve(pathModule.imgThumbPath + '/' + fileName + '_thumb(' + width + 'x' + height + ').jpg');
     if (datacheckModule.checkIfCacheFileExists(filePath)) {
         // Check if Image in folder named 'thumb' exists
         console.log('cached found');
@@ -90,3 +86,4 @@ image.get('/', function (req, res) {
         return res.sendFile(path_1.default.resolve(filePath));
     });
 });
+exports.default = image;

@@ -2,11 +2,13 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
+import { imgThumbPath } from './paths';
 const image = express.Router();
 
-let cachePath;
-let checkPassed;
-let checkError;
+var cachePath;
+var checkPassed;
+var checkError;
+const cachedImagesList: string[] = [];
 
 function checkFileName(fileName: string) {
   if (fileName == 'undefined') {
@@ -22,6 +24,8 @@ function checkFileName(fileName: string) {
 
 function checkWidth(width: number) {
   if (isNaN(width)) {
+    checkError =
+      'Please check your URL, Width not found or not written in digits';
     return false;
   }
   return true;
@@ -51,11 +55,29 @@ function checkIfCacheFileExists(path: string) {
   return false;
 }
 
+function getChacedFiles() {
+  fs.readdir(imgThumbPath, function(err, files) {
+    if (!err) {
+      if (!files.length) {
+        return;
+      } else {
+        fs.readdir(imgThumbPath, (err, files) => {
+            files.forEach(file => {
+                cachedImagesList.push(file);
+                console.log(file);
+            });
+        });
+      }
+    }
+  });
+}
+
 export {
   checkFileName,
   checkWidth,
   checkHeight,
   checkIfFileExists,
-  checkIfCacheFileExists,
   checkError,
+  checkIfCacheFileExists,
+  getChacedFiles,
 };
