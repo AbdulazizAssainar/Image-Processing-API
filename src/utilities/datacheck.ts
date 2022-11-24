@@ -12,12 +12,12 @@ function checkFileName(fileName: string) {
   if (fileName == 'undefined') {
     checkError = 'Your filename is ' + fileName;
     return false;
-  } else if (fileName == '') {
+  }
+  if (fileName == '') {
     checkError = 'Your filename is empty';
     return false;
-  } else {
-    return true;
   }
+  return true;
 }
 
 function checkWidth(width: number) {
@@ -25,9 +25,8 @@ function checkWidth(width: number) {
     checkError =
       'Please check your URL, Width not found or not written in digits';
     return false;
-  } else {
-    return true;
   }
+  return true;
 }
 
 function checkHeight(height: number) {
@@ -35,26 +34,23 @@ function checkHeight(height: number) {
     checkError =
       'Please check your URL, Height not found or not written in digits';
     return false;
-  } else {
-    return true;
   }
+  return true;
 }
 
 function checkIfFileExists(path: string) {
-  if (fs.existsSync(path)) {
-    return true;
-  } else {
+  if (!fs.existsSync(path)) {
     checkError = 'Please check your URL, File not found!';
     return false;
   }
+  return true;
 }
 
 function checkIfCacheFileExists(path: string) {
   if (fs.existsSync(path)) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 export {

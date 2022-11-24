@@ -38,6 +38,8 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
+    "jasmine": "^4.5.0",
+    "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
     "request": "^2.88.2",
@@ -47,8 +49,6 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "jasmine": "^4.5.0",
-    "jasmine-spec-reporter": "^7.0.0",
     "sharp": "^0.31.2"
   },
   "keywords": []

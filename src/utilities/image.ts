@@ -20,6 +20,7 @@ async function createImg(filename: string, width: number, height: number) {
       img
     );
     console.log('cache created');
+    return;
   } catch (error) {
     console.log(error);
   }
