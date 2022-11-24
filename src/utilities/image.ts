@@ -1,6 +1,6 @@
 import * as pathModule from './paths';
-const sharp = require('sharp');
-const fs = require('fs');
+import sharp from 'sharp';
+import fs from 'fs';
 
 async function createImg(filename: string, width: number, height: number) {
   try {
@@ -9,7 +9,14 @@ async function createImg(filename: string, width: number, height: number) {
       .resize(width, height)
       .toBuffer();
     fs.writeFileSync(
-      pathModule.imgThumbPath + '/' + filename + '_thumb(' + width + 'x' + height + ').jpg',
+      pathModule.imgThumbPath +
+        '/' +
+        filename +
+        '_thumb(' +
+        width +
+        'x' +
+        height +
+        ').jpg',
       img
     );
     console.log('cache created');
@@ -18,4 +25,4 @@ async function createImg(filename: string, width: number, height: number) {
   }
 }
 
-export {createImg};
+export { createImg };

@@ -1,12 +1,11 @@
-var fs = require('fs');
-const Fs = require('@supercharge/fs');
+import app from '../index';
+import supertest from 'supertest';
 
-let filesLength: number;
-let fullPath = '../../../images/full';
+const request = supertest(app);
 
-describe('Test Index', () => {
-  it('check if full/images exists', async () => {
-    const isEmptyDir = await Fs.isEmptyDir(fullPath);
-    expect(isEmptyDir).toBeFalse();
+describe('Testing endpoint responses', () => {
+  it('gets the api endpoint', async () => {
+    const responses = await request.get('/');
+    expect(responses.status).toBe(200);
   });
 });

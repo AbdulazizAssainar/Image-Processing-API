@@ -1,11 +1,13 @@
 import express from 'express';
-import routes from './routes';
+import * as routesModule from './routes';
 
 const app = express();
-const port = 4000;
+const port = 3000;
 
-app.use('/', routes);
+app.use('/', routesModule.routes);
 
 app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`);
 });
+
+export default app;
