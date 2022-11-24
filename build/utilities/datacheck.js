@@ -61,14 +61,13 @@ exports.checkIfCacheFileExists = checkIfCacheFileExists;
 function getChacedFiles() {
     fs_1.default.readdir(paths_1.imgThumbPath, function (err, files) {
         if (!err) {
-            if (!files.length) {
+            if (files.length === 0) {
                 return;
             }
             else {
                 fs_1.default.readdir(paths_1.imgThumbPath, function (err, files) {
                     files.forEach(function (file) {
                         cachedImagesList.push(file);
-                        console.log(file);
                     });
                 });
             }

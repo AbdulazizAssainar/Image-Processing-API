@@ -1,5 +1,5 @@
-const app = require("../..");
-const supertest = require("supertest");
+const app = require('../..');
+const supertest = require('supertest');
 
 const request = supertest(app);
 

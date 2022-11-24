@@ -5,18 +5,19 @@ import * as imageModule from '../../utilities/image';
 import * as pathModule from '../../utilities/paths';
 const image = express.Router();
 
-var fileName: string;
-var width;
-var height;
-var filePath: string;
-var chkPassed;
-var chkError;
+let fileName: string;
+let width;
+let height;
+let filePath: string;
+let chkPassed;
+let chkError;
 
 image.get('/', (req, res) => {
   //get data from url
   if (req.query.filename != undefined) fileName = String(req.query.filename);
   if (req.query.name != undefined) fileName = String(req.query.name);
-  if (req.query.filename == undefined && req.query.name == undefined) fileName = "undefined";
+  if (req.query.filename == undefined && req.query.name == undefined)
+    fileName = 'undefined';
   width = Number(req.query.width);
   height = Number(req.query.height);
   filePath = path.resolve(pathModule.imgFullPath + '/' + fileName + '.jpg');
@@ -50,7 +51,16 @@ image.get('/', (req, res) => {
   }
 
   // Switch filePath from folder named 'full' to another folder named 'thumb'
-  filePath = path.resolve(pathModule.imgThumbPath+'/'+fileName+'_thumb('+width+'x'+height+').jpg');
+  filePath = path.resolve(
+    pathModule.imgThumbPath +
+      '/' +
+      fileName +
+      '_thumb(' +
+      width +
+      'x' +
+      height +
+      ').jpg'
+  );
 
   if (datacheckModule.checkIfCacheFileExists(filePath)) {
     // Check if Image in folder named 'thumb' exists

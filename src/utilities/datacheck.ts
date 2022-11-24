@@ -5,9 +5,9 @@ import sharp from 'sharp';
 import { imgThumbPath } from './paths';
 const image = express.Router();
 
-var cachePath;
-var checkPassed;
-var checkError;
+let cachePath;
+let checkPassed;
+let checkError;
 const cachedImagesList: string[] = [];
 
 function checkFileName(fileName: string) {
@@ -56,16 +56,15 @@ function checkIfCacheFileExists(path: string) {
 }
 
 function getChacedFiles() {
-  fs.readdir(imgThumbPath, function(err, files) {
+  fs.readdir(imgThumbPath, function (err, files) {
     if (!err) {
-      if (!files.length) {
+      if (files.length === 0) {
         return;
       } else {
         fs.readdir(imgThumbPath, (err, files) => {
-            files.forEach(file => {
-                cachedImagesList.push(file);
-                console.log(file);
-            });
+          files.forEach((file) => {
+            cachedImagesList.push(file);
+          });
         });
       }
     }
@@ -80,4 +79,5 @@ export {
   checkError,
   checkIfCacheFileExists,
   getChacedFiles,
+  cachedImagesList,
 };

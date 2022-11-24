@@ -6,7 +6,7 @@ import cachedImages from './api/cachedImages';
 const routes = express.Router();
 
 routes.get('/', (req, res) => {
-  res.sendFile(path.resolve(srcPath+'/pages/html/index.html'));
+  res.sendFile(path.resolve(srcPath + '/pages/html/index.html'));
 });
 routes.use('/image', image);
 routes.use('/cachedImages', cachedImages);

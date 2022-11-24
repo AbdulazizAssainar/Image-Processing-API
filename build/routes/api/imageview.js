@@ -45,7 +45,7 @@ image.get('/', function (req, res) {
     if (req.query.name != undefined)
         fileName = String(req.query.name);
     if (req.query.filename == undefined && req.query.name == undefined)
-        fileName = "undefined";
+        fileName = 'undefined';
     width = Number(req.query.width);
     height = Number(req.query.height);
     filePath = path_1.default.resolve(pathModule.imgFullPath + '/' + fileName + '.jpg');
@@ -74,7 +74,14 @@ image.get('/', function (req, res) {
         return;
     }
     // Switch filePath from folder named 'full' to another folder named 'thumb'
-    filePath = path_1.default.resolve(pathModule.imgThumbPath + '/' + fileName + '_thumb(' + width + 'x' + height + ').jpg');
+    filePath = path_1.default.resolve(pathModule.imgThumbPath +
+        '/' +
+        fileName +
+        '_thumb(' +
+        width +
+        'x' +
+        height +
+        ').jpg');
     if (datacheckModule.checkIfCacheFileExists(filePath)) {
         // Check if Image in folder named 'thumb' exists
         console.log('cached found');

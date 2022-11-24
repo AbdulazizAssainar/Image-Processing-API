@@ -35,11 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var app = require("../..");
-var supertest = require("supertest");
+var app = require('../..');
+var supertest = require('supertest');
 var request = supertest(app);
 describe('Testing endpoint responses', function () {
-    it('gets the main endpoint', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('gets the main endpoint', function (Done) { return __awaiter(void 0, void 0, void 0, function () {
         var responses;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -47,11 +47,12 @@ describe('Testing endpoint responses', function () {
                 case 1:
                     responses = _a.sent();
                     expect(responses.status).toBeCloseTo(302);
+                    Done();
                     return [2 /*return*/];
             }
         });
     }); });
-    it('gets the api endpoint', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('gets the api endpoint', function (Done) { return __awaiter(void 0, void 0, void 0, function () {
         var responses;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -59,6 +60,7 @@ describe('Testing endpoint responses', function () {
                 case 1:
                     responses = _a.sent();
                     expect(responses.status).toBe(200);
+                    Done();
                     return [2 /*return*/];
             }
         });
