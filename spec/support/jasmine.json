@@ -6,10 +6,8 @@
     "healpers": [
         "healpers/**/*.ts"
     ],
-    "env": {
-        "failSpecWithNoExpectations": false,
-        "stopSpecOnExpectationFailure": false,
-        "stopOnSpecFailure": false,
-        "random": false
-    }
+    "failSpecWithNoExpectations": false,
+    "stopSpecOnExpectationFailure": false,
+    "stopOnSpecFailure": false,
+    "random": false
 }

@@ -7,7 +7,7 @@ import SuiteInfo = jasmine.SuiteInfo;
 
 class CustomProcessor extends DisplayProcessor {
   public displayJasmineStarted(
-    info: jasmine.JasmineStartedInfo,
+    info: SuiteInfo,
     log: string
   ): string {
     return log;
