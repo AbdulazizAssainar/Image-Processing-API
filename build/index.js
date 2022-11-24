@@ -30,8 +30,11 @@ var express_1 = __importDefault(require("express"));
 var routesModule = __importStar(require("./routes"));
 var app = (0, express_1.default)();
 var port = 3000;
-app.use('/', routesModule.routes);
+app.get('/', function (req, res) {
+    res.redirect('/api');
+});
+app.use('/api', routesModule.routes);
 app.listen(port, function () {
     console.log("server started at http://localhost:".concat(port));
 });
-exports.default = app;
+module.exports = app;

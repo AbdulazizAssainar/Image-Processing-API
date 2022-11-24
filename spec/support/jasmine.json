@@ -1,5 +1,4 @@
 {
-    
     "spec_dir": "src/tests",
     "spec_files": [
         "**/*[sS]pec.ts"
@@ -7,6 +6,10 @@
     "healpers": [
         "healpers/**/*.ts"
     ],
-    "stopSpecOnExpectationFailure": false,
-    "random": false
+    "env": {
+        "failSpecWithNoExpectations": false,
+        "stopSpecOnExpectationFailure": false,
+        "stopOnSpecFailure": false,
+        "random": false
+    }
 }

@@ -25,8 +25,6 @@ function checkFileName(fileName) {
 exports.checkFileName = checkFileName;
 function checkWidth(width) {
     if (isNaN(width)) {
-        exports.checkError = checkError =
-            'Please check your URL, Width not found or not written in digits';
         return false;
     }
     return true;
