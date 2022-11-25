@@ -13,6 +13,7 @@ cachedImages.get('/', (req, res) => {
       ') cached images: ' +
       datacheckModule.cachedImagesList
   );
+  return;
 });
 
 datacheckModule.getChacedFiles();

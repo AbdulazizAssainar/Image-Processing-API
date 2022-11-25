@@ -31,10 +31,11 @@ var routesModule = __importStar(require("./routes"));
 var app = (0, express_1.default)();
 var port = 3000;
 app.get('/', function (req, res) {
-    res.redirect('/api');
+    return res.redirect('/api');
 });
 app.use('/api', routesModule.routes);
 app.listen(port, function () {
     console.log("server started at http://localhost:".concat(port));
+    return;
 });
 module.exports = app;

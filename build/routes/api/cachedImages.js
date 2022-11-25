@@ -34,6 +34,7 @@ cachedImages.get('/', function (req, res) {
         datacheckModule.cachedImagesList.length +
         ') cached images: ' +
         datacheckModule.cachedImagesList);
+    return;
 });
 datacheckModule.getChacedFiles();
 exports.default = cachedImages;

@@ -5,9 +5,9 @@ import sharp from 'sharp';
 import { imgThumbPath } from './paths';
 const image = express.Router();
 
-let cachePath;
-let checkPassed;
-let checkError;
+let cachePath: string;
+let checkPassed: boolean;
+let checkError: string;
 const cachedImagesList: string[] = [];
 
 function checkFileName(fileName: string) {

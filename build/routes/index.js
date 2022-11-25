@@ -13,6 +13,7 @@ var routes = express_1.default.Router();
 exports.routes = routes;
 routes.get('/', function (req, res) {
     res.sendFile(path_1.default.resolve(paths_1.srcPath + '/pages/html/index.html'));
+    return;
 });
 routes.use('/image', imageview_1.default);
 routes.use('/cachedImages', cachedImages_1.default);

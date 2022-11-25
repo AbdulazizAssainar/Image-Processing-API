@@ -6,11 +6,11 @@ import * as pathModule from '../../utilities/paths';
 const image = express.Router();
 
 let fileName: string;
-let width;
-let height;
+let width: number;
+let height: number;
 let filePath: string;
-let chkPassed;
-let chkError;
+let chkPassed: boolean;
+let chkError: string;
 
 image.get('/', (req, res) => {
   //get data from url
@@ -73,6 +73,7 @@ image.get('/', (req, res) => {
     // Create cache image in folder named 'thumb'
     res.sendFile(path.resolve(filePath))
   );
+  return;
 });
 
 export default image;

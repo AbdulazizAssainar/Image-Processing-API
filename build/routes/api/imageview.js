@@ -92,5 +92,6 @@ image.get('/', function (req, res) {
         // Create cache image in folder named 'thumb'
         return res.sendFile(path_1.default.resolve(filePath));
     });
+    return;
 });
 exports.default = image;
